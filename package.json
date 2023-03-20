@@ -1,0 +1,21 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1-Vue学习大纲.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sxs123166/Vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sxs123166/Vue/issues"
+  },
+  "homepage": "https://github.com/sxs123166/Vue#readme"
+}
