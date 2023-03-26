@@ -61,6 +61,7 @@
     // 6. 打包处理js文件中的高级语法
     // webpack只能打包处理一部分高级的javascript语法。对于那些webpack无法处理的高级js语法，
     // 需要借助于babel-loader进行打包处理。例如webpack无法处理下面的javascript代码
+    // 在index.js中
     //  1） 定义了名为info的转换器
     // function info(target) {
     //     // 2)  为目标添加静态属性 info
@@ -73,3 +74,18 @@
 
     // // 4) 打印Person的静态属性 info
     // console.log(Person.info);
+
+    // 6.1） 安装babel-loader相关的包
+    // 运行如下的命令安装对应的依赖包：
+    // npm i babel-loader@8.2.2 @babel/core@7.14.6 @babel/plugin-proposal-decorators@7.14.5 -D
+
+    // 在webpack.config.js的module -> rules数组中，添加loader规则如下：
+    // 注意：必须使用exclude指定排除项：因为node_modules目录下的第三方包不需要被打包
+    // {test: /\.js$/, use: 'babel-loader', exclude: /node_modules/}
+
+    // 6.2） 配置babel-loader
+    // 在项目根目录中，创建名为babel.config.js的配置文件，定义babel的配置项如下：
+    // module.exports = {
+    //     // 声明babel可用的插件
+    //     plugins: [['@babel/plugin-proposal-decoraters', {legacy: true}]]
+    // }
