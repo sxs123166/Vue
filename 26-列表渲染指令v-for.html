@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 列表渲染指令 -->
+    <!-- vue提供了v-for列表渲染指令，用来辅助开发者基于一个数组来循环渲染一个列表结构。
+    v-for指令需要使用item in item的形式，其中 -->
+    <!-- items是待循环的数组 -->
+    <!-- item是被循环的每一项 -->
+
+    <!-- v-for指令还支持一个可选的第二个参数，即当前项的索引。语法格式为（item, index）in items, -->
+
+    <!-- 注意：v-for指令中的item项和index索引都是形参，可以根据需要进行重命名。例如（user,i）in userlist -->
+
+    <!-- data: {
+        list: [ //列表项
+        {id: 1,name:'zs'},
+        {id: 2,name:'ls'}
+        ]
+    } -->
+
+    <!-- -----------分割线---------- -->
+    <!-- <ul>
+        <li v-for="item in list">姓名是： {{item.name}}</li>
+    </ul> -->
+
+    <div id="app">
+        
+        <table>
+            <thead>
+                <th>索引</th>
+                <th>Id</th>
+                <th>姓名</th>
+            </thead>
+            <tbody>
+                <!-- 官方建议：只要用到了v-for指令，那么一定要绑定一个：key属性 -->
+                <!-- 而且，尽量把id作为key的值 -->
+                <!-- 官方对key的值类型，是有要求的：字符串或数字类型 -->
+                <!-- key的值是不能重复的，否则会报错 -->
+
+                <!-- key的注意事项 -->
+                <!-- 1） key的值只能是字符串或数字类型 -->
+                <!-- 2）key的值必须具有唯一性（即：key的值不能重复） -->
+                <!-- 3）建议把数据项id属性的值作为key值（因为id的值具有唯一性） -->
+                <!-- 4）使用index的值当作key的值没有任何意义（因为index的值不具有唯一性）（此处的唯一性是指数据与id的对应不具有唯一性） -->
+                <!-- 5）建议使用v-for指令时一定要指定key的值（既提升性能、有纺织列表紊乱） -->
+
+                
+                <tr v-for="(item, index) in list" :key="item.id" :title="item.name + index">
+                    <td>{{ index }}</td>
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.name }}</td>
+            </tbody>
+        </table>
+    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+                list: [ //列表项
+                   {id: 1, name:'zs'},
+                   {id: 2, name:'ls'},
+                   {id: 3, name:'ww'},
+                ]
+            },
+            methods: {},
+
+        })
+    </script>
+</body>
+</html>

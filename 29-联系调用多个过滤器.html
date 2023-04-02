@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 过滤器可以串联的进行调用，例如： -->
+
+    <!-- 把message的值，交给filterA 进行处理 -->
+    <!-- 把 filterA处理的结果， 在交给 filterB进行处理 -->
+    <!-- 最终把filterB 处理的结果，作为最终的值渲染到页面上 -->
+
+
+    <!-- {{ item.time | dateformat | xxx | yyy | zzz }} -->
+
+
+    <!-- 过滤器传参 -->
+    <!-- 过滤器的本质是Javascript函数，因此可以接收参数，格式为 -->
+
+    <!-- arg1和arg2是传递给 filterA的参数 -->
+    <p>{{ message | filterA(arg1, arg2)}}</p>
+
+    <!-- 过滤器处理函数的形参列表中 -->
+      <!-- 第一个参数：永远都是管道符前面待处理的值 -->
+      <!-- 从第二个参数开始才是调用过滤器时传递过来的 arg1和arg2参数 -->
+      <!-- Vue.filter('filterA', (msg, arg1, arg2) => {
+        //过滤器代码逻辑
+      }) -->
+</body>
+</html>

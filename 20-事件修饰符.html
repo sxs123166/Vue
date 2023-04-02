@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 事件修饰符 -->
+    <!-- 在事件处理函数中调用event.preventDefault()或event.stopPropagation()是非常常见的需求 -->
+    <!-- 因此，vue提供了事件修饰符的概念，来辅助程序员更方便的对事件的触发进行控制。常用的五个事件修饰符如下： -->
+
+    <!-- 事件修饰符                       说明
+    .prevent                   阻止默认行为（例如：阻止a连接的跳转、阻止表单的提交等）
+    .stop                      阻止事件冒泡
+    .capture                   以捕获模式触发当前的事件处理函数
+    .once                      绑定的事件只触发一次
+    .self                      只有在 event.target是当前元素自身触发时触发事件处理函数    -->
+    <div id="app">
+        <a href="http://www.baidu.com" @click.prevent="show">跳转到百度首页</a>
+
+        <hr>
+
+        <div style="height: 150px; background-color: orange; padding-left: 100px; line-height: 150px;" @click="divHandler">
+            <button @click.stop="btnHandler">按钮</button></div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" @click.prevent="show"></script>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                //方法一：使用原生JS的阻止行为
+                // show(e) {
+                //     e.preventDefault()
+                //     console.log();
+                // }
+                // 方法2
+                show() {
+                    console.log('方法2，点击了链接');
+                },
+                btnHandler() {
+                    console.log('btnHandler');
+                },
+                divHandler() {
+                    console.log('divHabdler');
+                }
+            },
+        })
+    </script>
+</body>
+</html>

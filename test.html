@@ -7,20 +7,73 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">{{ username }}</div>
+    <div id="app">{{ username }}
+        <input type="text" v-bind:placeholder="tips">
+        <hr>
+        <img v-bind:src="photo" alt="" style="width: 150px">
+
+        <hr>
+        <div>1+2的结果是:{{ 1 + 2}}</div>
+        <div>{{ tips }} 反转的结果是 {{ tips.split('').reverse().join('') }}</div>
+        
+        <hr>
+        <div :title="'box' + index">看看属性运算成功了没？</div>
+
+        <hr>
+
+        <p>count的值是： {{ count }}</p>
+        <button v-on:click="add(2)">+1</button>
+
+        <hr>
+
+        <p>count的值是： {{ count }}</p>
+        <button v-on:click="sub">+1</button>
+
+        <hr>
+
+        <p>count 的值是： {{ count }}</p>
+        <button @click="addc(1, $event)">+N</button>
+    </div>
     <!-- 1.导入vue的库文件, 在window全局就有了Vue这个构造函数-->
-    <script src="./VUE/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <!-- 2. 创建vue的实例对象 -->
 <script>
     const vm = new Vue({
         // el属性是固定的写法，表示vm示例要控制页面上的哪个区域，接收的值是一个选择器
-        el: '#app',
+        el: '#app', //如果只写标签，如果有很多个标签，vue分辨不出来要给哪个数据，就会给第一个数据，用id是为了获取外面的元素，外面的div将内部元素包裹起来
         // data对象就是要渲染的数据
         data: {
             username: 'zhangsan',
             gender: 'n',
-            info: '<h4 style="color:red; font-weight:bold;"">Hello,world</h4>'
+            info: '<h4 style="color:red; font-weight:bold;"">Hello,world</h4>',
+            tips: '请输入用户名',
+            photo: 'https://v2.cn.vuejs.org/images/logo.svg',
+            index: 3,
+            count: 0,
+
+        },
+        // methods 的作用， 就是定义时间的处理函数
+        methods: {
+            add: function(n) {
+                console.log(vm == this);
+                // vm.count += 1;
+                this.count += n;
+            },
+            sub() {
+                alert('简写形式');
+                this.count += 1;
+            },
+            addc(n, e) {
+                this.count += n;
+
+                if(this.count % 2 == 0){
+                    e.target.style.backgroundColor = 'red'
+                }else {
+                    e.target.style.backgroundColor = ''
+                }
+            }
+
         }
     })
 

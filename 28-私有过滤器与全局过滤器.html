@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 私有过滤器与全局过滤器 -->
+
+    <!-- 在filters节点下的过滤器，称为私有过滤器，因为他只能在当前vm示例所控制的el区域内使用。 -->
+    <!-- 如果希望在多个vue实例之间共享过滤器，则可以按照如下的格式定义全局过滤器 -->
+
+    <!-- 全局过滤器 -独立于每个vm实例之外 -->
+    <!-- Vue.filter() 方法接收两个参数 -->
+      <!-- 第一个参数：是全局过滤器的名字 -->
+      <!-- 第二个参数， 是全局过滤器的处理函数 -->
+      <!-- Vue.filter('capitalize', (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1) + '~~'
+      }) -->
+
+
+      <!-- 注意： -->
+       <!-- 1.要定义到filters节点下，本质是一个函数 -->
+       <!-- 2.在过滤器函数中， 一定要有return值 -->
+       <!-- 3.在过滤器的形参中，就可以获取到“管道符”前面待处理的那个值 -->
+       <!-- 4.如果全局过滤器和私有过滤器名字一致，此时按照“就近原则”，调用的是私有过滤器 -->
+
+      <div id="app">
+        
+        <p>{{ message | capitalize}}</p>
+
+      </div>
+
+      <div id="app2">
+        <p>{{ messahe | capitalize}}</p>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+      <script>
+
+        Vue.filter('capitalize', function(str) {
+           
+            const first = val.charAt(0).toUpperCase();
+            const other = val.slice(1);
+            return first + other + '～～';
+        })
+
+           const vm = new Vue({
+              el: '#app',
+              data: {},
+              methods: {},
+  
+          })
+      </script>
+
+</body>
+</html>

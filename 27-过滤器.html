@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 过滤器（Filters）是vue为开发者提供的功能，常用语文本的格式化。过滤器可以用在两个地方：插值表达式和v-bind属性绑定 -->
+
+    <!-- 过滤器应该被添加在JavaScript表达式的尾部，由“管道符”进行调用 示例代码为：-->
+
+    <!-- 在双花括号中通过管道符调用capitialize过滤器，对message的值进行格式化 -->
+    <!-- <p>{{ message | capitalize}}</p> -->
+
+    <!-- 在v-bind中通过“管道符”调用 formatId 过滤器，对 rawId的值进行格式化 -->
+    <!-- <div v-bind:id="rawId | formatId"></div> -->
+    <div id="app">
+        
+          <p>{{ message | capitalize}}</p>
+    
+    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello,vue.js.'
+            },
+            methods: {},
+            filters: {
+                capitalize(val) {
+                    console.log(val);
+
+                    const first = val.charAt(0).toUpperCase();
+
+                    const other = val.slice(1);
+
+                    return first + other;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

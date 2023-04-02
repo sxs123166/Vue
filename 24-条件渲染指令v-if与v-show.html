@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 条件渲染指令 -->
+    <!-- 条件渲染指令用来辅助开发者按需控制DOM的显示与隐藏，条件渲染的指令有两个，分别是v-if和v-show -->
+
+    <!-- 示例用法为： -->
+    <!-- <div id="app">
+        <p v-if="networkState === 200">请求成功 --- 被v-if控制</p>
+        <p v-show="neworkState === 200">请求成功 --- 被v-show控制</p>
+    </div> -->
+
+    <!-- v-show的原理是：动态为元素添加或移除display: none,来实现元素的显示与隐藏 -->
+    <!-- 如果要频繁的切换显示与隐藏，用v-show性能会更好 -->
+    <!-- v-if的原理是：每次动态创建或移除元素，实现元素的显示与隐藏 -->
+    <!-- 如果刚进入页面的时候，某些元素默认不需要被展示，而且这个后期元素很可能也不需要被展示出来，此时v-if性能更好 -->
+
+    
+
+    <div id="app">
+        
+        <p v-if="flag">请求成功 --- 被v-if控制</p>
+        <p v-show="neworkState === 200">请求成功 --- 被v-show控制</p>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+                // 如果flag为true，则显示被控制的元素；如果为false则隐藏被控制的元素
+                flag: true
+            },
+            methods: {},
+
+        })
+    </script>
+</body>
+</html>
