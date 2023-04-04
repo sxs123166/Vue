@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btnPost">发起post请求</button>
+    <!-- axios是一个专注于网络请求的库 -->
+    <!-- axios是前端圈最火的、专注于数据请求的库 -->
+
+    <!-- Vue、React都使用axios来请求数据 -->
+    <!-- 中文官网：http://www.axios-js.com/ -->
+    <!-- 英文官网地址：https://www.npmjs.com/package/axios -->
+
+    <!-- axios的基本语法为： -->
+    <!-- axios({
+        method: '请求的类型',
+        url: '请求的url地址',
+    }).then(result) => { -->
+        <!-- .then 用来请求请求成功之后的回调函数 -->
+        <!-- 形参中的result是请求成功之后的结果 -->
+    <!-- } -->
+    <script src="./lib/axios.js"></script>
+    
+    <!--
+    <script>
+        // 1.调用axios方法得到的返回值是Promise对象
+        const result = axios({
+            method: 'GET',
+            url: 'http://www.liulongbin.top:3006/api/getbooks',
+            //URL中的查询参数
+            // get请求后加参数，则在params里面写
+            params: {
+                id: 1,
+            },
+            // post请求加参数，在data里面写
+            data: {}
+        }).then(function(result) {
+            console.log(result.data);
+        })
+    </script>
+
+    <script>
+   
+        axios({
+            method: 'POST',
+            url: 'http://www.liulongbin.top:3006/api/getbooks',
+            data: {
+                name: 'zs',
+                age: 20,
+            }
+        }).then(function(result) {
+            console.log(result);
+        })
+    </script> -->
+
+    <script>
+        //如果调用某个方法的返回值是Promise实例，则前面可以添加 await
+        // await只能用在被async修饰的方法中
+        document.querySelector('#btnPost').addEventListener('click', async function() {
+            // 结构赋值的时候，使用重命名
+            // 1. 调用axios之后，使用async/await进行简化
+            // 2.使用解构赋值，从axios封装的大对象之中，把data属性解构出来
+            // 3.把解构出来的data属性，使用：进行重命名，一般都命名为{data:res}
+            
+            const {data:res} = await axios({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/getbooks',
+              
+            })
+
+            console.log(res.data);
+        })
+    </script>
+</body>
+</html>

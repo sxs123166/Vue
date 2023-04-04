@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 什么事watch侦听器？ -->
+    <!-- watch侦听器允许开发者监视数据的变化，从而针对数据的变化做特定的操作 -->
+    <!-- 语法格式为： -->
+    <!-- const vm = new Vue({
+        el: '#app',
+        data: {username: ''},
+        watch: { -->
+            <!-- 坚挺username 值的变化 -->
+            <!-- newVal是变化后的新值， oldVal是变化之前的旧值 -->
+            <!-- username(newVal, oldVal) {
+                console.log(newVal, oldVal)
+            }
+        }
+    }) -->
+
+    <!-- 侦听器的格式： -->
+    <!-- 1.方法格式的侦听器 -->
+      <!-- 缺点：无法在刚进入页面的时候，自动触发 -->
+      <!-- 如果监听的是一个对象，如果对象中的属性发生了变化，不会触发侦听器 -->
+    <!-- 2.对象格式的监听器 -->
+      <!-- 好处：可以通过immediate选项，让监听器自动触发 -->
+      <!-- 可以通过deep选项，让侦听器深度监听对象中每个属性的变化 -->
+
+    <div id="app">
+        
+    <div id="app">
+        <input type="text" v-model="info.username">
+    </div>
+    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+                info: {
+                    username: 'admin',
+                    address: 'beijing'
+                }
+            },
+            methods: {
+
+            },
+            // 所有的监听器，都应该被定义到wathch节点下
+            watch: {
+                //方法格式的监听器
+                // 侦听器本质上是一个函数，要监视哪个数据的变化，就把数据名作为方法名即可
+                // 新值在前，旧值在后
+                // username(newVal, oldVal) {
+                //     // console.log('监听到了 username 值的变化');
+                //     console.log(newVal, oldVal);
+                // }
+
+                // 对象格式的监听器
+                // immediate 选项的默认值是 false
+                // immediate 的作用是： 控制监听器是否自动触发一次
+                // username: {
+                //    handler(newVal, oldVal) {
+                //       console.log(newVal, oldVal);
+                //    },
+                //    immediate: true,
+                // },
+
+                // info: {
+                //     handler(newVal) {
+                //         console.log(newVal);
+                //     },
+                //     // 开启深度监听， 只要对象中任何一个属性变化了，都会触发"对象的监听器"
+                //     deep: true,
+                // }
+
+                //监听对象单个属性的变化
+                // 如果要侦听的是对象的子属性的变化，则必须包裹一层单引号
+                'info.username'(newVal) {
+                    console.log(newVal);
+                }
+
+            }
+
+        })
+    </script>
+</body>
+</html>

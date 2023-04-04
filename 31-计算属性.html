@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- 什么事计算属性 -->
+    <!-- 计算属性指的是通过一系列运算之后，最终得到一个属性值 -->
+    <!-- 这个动态计算出来的属性值可以被摸板结构或methods方法使用 示例代码为： -->
+
+    <!-- <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                r: 0, g: 0, b: 0
+            },
+            computed: {
+                rgb(){return 'rgb({$this.r}, ${this.g}, ${this.b})'}
+            },
+            methods: {
+                show() {console.log(this.rgb)}
+            },
+
+        })
+    </script> -->
+
+    <!-- 所有的计算属性，都要定义到 computed 节点之下： -->
+    <!-- 计算属性在定义的时候， 要定义成方法格式 -->
+    <!-- computed: {} -->
+
+    <!-- 计算属性 -->
+    <!-- 特点： -->
+      <!-- 1.定义的时候，要定义为“方法” -->
+      <!-- 2.当使用计算属性的时候，当普通的属性使用即可 -->
+    <!-- 好处：     -->
+      <!-- 1.实现了代码的复用 -->
+      <!-- 2.只要计算属性中以来的数据源变化了，则计算属性会自动重新求值 -->
+      
+    <div id="app">
+        
+    <div>
+        <span>R:</span>
+        <input type="text" v-model.number="r">
+    </div>
+    <div>
+        <span>G:</span>
+        <input type="text" v-model.number="g">
+    </div>
+    <div>
+        <span>B:</span>
+        <input type="text" v-model.number="b">
+    </div>
+
+    <hr>
+
+    <!-- 专门用来呈现颜色的div盒子 -->
+    <div class="box" :style="{backgroundColor: rgb}">
+        {{ rgb }}
+    </div>
+    <button @click="show">按钮 </button>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+         const vm = new Vue({
+            el: '#app',
+            data: {
+                r: 0,
+                g: 0,
+                b: 0,
+
+            },
+            methods: {
+                show() {
+                    console.log(rgb);
+                }
+            },
+            computed: {
+                // rgb 作为一个计算属性，被定义成了方法格式
+                // 最终，在这个方法中，要返回一个生成好的rgb(x,x,x)的字符串
+                rgb() {
+                    return `rgb(${this.r}, ${this.g}, ${this.b})`
+                }
+            }
+
+        })
+    </script>
+
+</body>
+</html>
