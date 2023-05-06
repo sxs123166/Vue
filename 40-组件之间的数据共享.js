@@ -27,3 +27,35 @@
     <template/>
     props: ['msg', 'user'] */
     
+
+    //不要修改props属性中的值
+
+// 子组件向父组件共享数据使用自定义事件
+//    子组件像父组件共享数据，示例代码为：
+// 子组件：
+// export default {
+//     data() {
+//         return { count: 0 }
+//     },
+//     methods: {
+//         add() {
+//             this.count += 1
+//             // 修改数据时，通过 $emit() 触发自定义事件
+//             this.$emit('numchange', this.count)
+//         }
+//     }
+// }
+
+// 父组件
+/* <Son @numange="getNewCount"></Son> */
+
+// export default {
+//     data() {
+//         return {countFromSon: 0}
+//     },
+//     methods: {
+//         getNewCount(val) {
+//             this.countFromSon = val
+//         }
+//     }
+// }
